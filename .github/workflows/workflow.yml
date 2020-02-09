@@ -13,7 +13,9 @@ jobs:
       with:
         repository: 'google/googletest'
     - name: build Googletest
-      run: cd googletest && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
+      run: cd googletest && mkdir build && cd build && cmake .. && make
+    - name: install Googletest
+      run: cd googletest && cp -r ../include/gtest /usr/local/include && cp lib*.a /usr/local/lib && sudo ldconfig
     - name: CMake
       run: mkdir build && cd build && cmake ..
     - name: make
