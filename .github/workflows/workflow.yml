@@ -9,7 +9,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        repository: 'google/googletest'
+    - name: build Googletest
+      run: cd googletest && mkdir build && cd build && cmake .. && make
+    - name: install Googletest
+      run: cd googletest/build && sudo cp -r ../include/gtest /usr/local/include && cd lib && ls && sudo cp lib*.a /usr/local/lib && sudo ldconfig
     - name: CMake
       run: mkdir build && cd build && cmake ..
     - name: make
       run: cd build && make
+    - name: test
+      run: cd build && make test
