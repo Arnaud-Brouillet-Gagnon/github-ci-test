@@ -15,7 +15,7 @@ jobs:
     - name: build Googletest
       run: cd googletest && mkdir build && cd build && cmake .. && make
     - name: install Googletest
-      run: cd googletest/build && ls && sudo cp -r ../include/gtest /usr/local/include && sudo cp lib*.a /usr/local/lib && sudo ldconfig
+      run: cd googletest/build && sudo cp -r ../include/gtest /usr/local/include && cd lib && ls && sudo cp lib*.a /usr/local/lib && sudo ldconfig
     - name: CMake
       run: mkdir build && cd build && cmake ..
     - name: make
